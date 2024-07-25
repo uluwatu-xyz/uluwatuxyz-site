@@ -14,7 +14,7 @@ jobs:
         with:
           submodules: true
           fetch-depth: 0
-          path: cactus
+          path: uluwatuxyz
 
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2.4.13
@@ -23,11 +23,11 @@ jobs:
           extended: true
 
       - name: Build
-        run: hugo --minify --baseURL https://www.uluwatu.xyz/
+        run: cd uluwatuxyz && hugo --minify --baseURL https://www.uluwatu.xyz/
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3.7.3
         if: github.ref == 'refs/heads/main'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: public
+          publish_dir: uluwatuxyz/public
