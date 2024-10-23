@@ -1,5 +1,5 @@
 +++
-title = 'Signal Correlation Hurdle Rates For Profitable Trading'
+title = '[draft] Signal Correlation Hurdle Rates For Profitable Trading'
 date = 2024-09-30T11:56:16+01:00
 draft = false
 math = true
