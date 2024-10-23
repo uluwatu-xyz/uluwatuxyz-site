@@ -98,7 +98,7 @@ The StableVec implementation has proven itself a superior alternative, notably i
 
 In terms of tuning the BTreeMap there are some interesting avenues we've not explored. One is a study of tuning the `B` parameter on an implementation which allows it. Another is to provide the BTreeMap with a custom allocator (such as a bump allocator) which allows it to allocate nodes from the same block of contigous memory even over a long lifetime, exploiting memory locality.
 
-Profiling code is provided [here](https://github.com/Flugplatz/rust-scratch-public/tree/main/btree-ob-eval)
+Profiling code is provided [here](https://github.com/uluwatu-xyz/rust-scratch-public/tree/main/btree-ob-eval)
 
 
 [^1]: Database Internals: A Deep-Dive into How Distributed Data Systems Work - https://www.databass.dev/
