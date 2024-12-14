@@ -40,13 +40,18 @@ $$
 \alpha = \sigma_y \cdot \rho_{xy} \cdot (\frac{x-\bar{x}}{\sigma_x})
 $$
 
-*@macrocephalopod* expands on this framework and forumlates the minimum correlation required to trade profitably ie. to exceed trading costs $c$ (eg. exchange fees, slippage). He describes regressing forecast returns $y$ where the volatility coefficient has been expanded to allow for a  time-varying lookahead, paramaterised by $\tau$. 
+*@macrocephalopod* expands on this framework and forumlates the minimum correlation required to trade profitably ie. to exceed trading costs $c$ (eg. exchange fees, slippage). 
 
-He then shows how the correlation formula can be re-written (see original post for detail) when $x$ has unit variance to realise $ \beta $ as the product of correlation and volatility, very similar to $ \alpha $ above:
+He describes regressing forecast returns $y$ where the volatility coefficient has been expanded to allow for a  time-varying lookahead, paramaterised by $\tau$. He then shows how the correlation formula can be re-written (see original post for detail) when $x$ has unit variance to realise $ \beta $ as the product of correlation and volatility, very similar to $ \alpha $ above:
 
 $$ 
 y = \beta \cdot x + \sigma \sqrt{\tau} \cdot \epsilon 
 $$
+
+$$
+...
+$$
+
 $$
 \beta = \rho \cdot \sigma \cdot \sqrt{\tau} 
 $$
