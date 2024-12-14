@@ -4,6 +4,7 @@ date: 2024-09-30T11:56:16+01:00
 draft: false
 toc: false
 images:
+math: true
 tags:
   - information coefficient
   - forecasting
