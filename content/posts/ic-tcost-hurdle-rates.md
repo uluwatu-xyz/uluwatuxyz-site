@@ -2,10 +2,11 @@
 title = '[draft] Signal Correlation Hurdle Rates For Profitable Trading'
 date = 2024-09-30T11:56:16+01:00
 draft = false
+toc = false
 math = true
 +++
 
-## Introduction 
+# Introduction 
 
 X (formally Twitter) user *@macrocephalopod* [^1] describes a derivation of the minimum required correlation between a trading signal and the target return for profitable trading. It is defined as a function of the signal Z-Score, forecast horizon return volatility and transaction costs. 
 
@@ -13,7 +14,7 @@ This blog post consists of a summary of this technique and applies it to histori
 We visualise the minimum correlation for different combinations of transaction costs (exchange fee tiers) and 
 target forecast horizons (via historical volatility).
 
-## Correlation, Alpha and Volatility
+# Correlation, Alpha and Volatility
 
 A quick recap on correlation before we continue, the (symmetric) Pearson correlation coefficient ($ \rho$) tells us if $x$ $(y)$ increases by one standard
 deviation, what is the expected response in increase of standard deviations of $y$ $(x)$:
@@ -24,6 +25,7 @@ Corr(x,y) = \frac{\sum_{i=1}^{N} (x_i - \bar{x})(y_i - \bar{y})}
 $$
 
 Grinold & Kahn [^2] introduce a "refined forceast" $ \alpha $, in units of target return. Volatility is the target return volatility (standard deviation at our target horizon), Corr is the correlation between the trading signal and the target returns and Score is the Z-Score of a trading signal:
+
 $$ \alpha = Volatility \cdot Corr \cdot Score $$
 
 If we evaluate this function backwards we can see how we can covert an instance of the signal (Score) into expected target return using the correlation relationship described above. The (Z)Score is the signal transformed to have unit variance, we multiply this by the correlation coefficient to get expected target return in standard deviations and then we multiply this by Volatility to transform it back into the unit of returns.
@@ -32,7 +34,7 @@ In practise, the $ \alpha $ value is quoted without the score coefficient as it 
 
 It's important that our $ \alpha $ value reaches a magnitude large enough that it exceeds trading costs and that it does so frequently enough for us to acheive our target return on capital. We can improve the correlation between the signal and return via feature engineering and modelling. The Volatility coefficient can be tuned based on our target forecast horizon or the asset we choose to trade.
 
-## Minimum Correlations
+# Minimum Correlations
 
 Before continuing, we re-state the $ \alpha $ formula from above in more detail for comparison, for target return $y$ and signal $x$:
 
@@ -48,9 +50,7 @@ $$
 y = \beta \cdot x + \sigma \sqrt{\tau} \cdot \epsilon 
 $$
 
-$$
-...
-$$
+$$ ... $$
 
 $$
 \beta = \rho \cdot \sigma \cdot \sqrt{\tau} 
@@ -64,7 +64,7 @@ $$ \Rightarrow \rho \le  \frac{c}{3\sigma\sqrt{\tau}} $$
 
 Assuming the signal follows a normal distribution, it will only exceed a magnatude of $ 3\sigma $ in 0.3% of periods - not enough to trade consistently. As such, as stated by the original author, values of 1.5x or 2x the minimum correlation is neccessary to realistically trade profitably - this allows us to reduce the signal threshold and exceed costs in a greater number of periods.
 
-## Evaluation on Binance Bitcoin price data
+# Evaluation on Binance Bitcoin price data
 
 We look at the following (reduced) Binance fee tiers for taker orders and combine them with a 
 constant slippage of 5 basis points (bps) for our cost variable $c$. The Total Fee is this estimate doubled, to account for both entering and exiting a position.
@@ -87,11 +87,11 @@ The minimum correlation for a signal on the VIP9 account is around 50% less than
 
 The notebook used to generate these plots is available here [^4].
 
-## Fee tier burn in
+# Fee tier burn in
 
 As an interesting exercise we investigate the "burn in" cost of a strategy which is only profitable at a higher fee tier and has to invest in an initial loss to advance to the required tier. We need to set some exta parameters: forecast horizon is 5 minutes, maximum time to complete the burn in is one week (2016 five minute periods) and the capacity of each trade is \$30,000.
 
-### Example one - Regular to VIP3
+## Example one - Regular to VIP3
 
 We evaluate a signal with $ \rho = 0.496$, with an alpha of $8.3bps$, this is unable to beat Regular tier transaction costs at the $3\sigma$ level ($\alpha = 24.9$, $c = 25$) however on the VIP3 fee tier we can overcome transaction costs when $\sigma \gt 2.29$ and at this threshold we can trade in just over 2% of periods.
 
@@ -101,7 +101,7 @@ At a minimum signal strength of $ x = 1 \sigma $, alpha is $8.3bps$ - after cost
 16bps of 20 million -  we lose approx $32,000 before advancing to VIP3.
 
 
-### Example two - Regular to VIP9
+## Example two - Regular to VIP9
 
 TODO: 1.5mm capacity is not realistic
 
@@ -118,7 +118,7 @@ TODO: How to account for profitable signals instead of hardcoding 1sigma??
 | VIP6    | -7.62                   | 3925                   | 2617   | -2,990,850.0 |
 |         |                         | Total                  |        | -3,094,350.0 |
 
-## Summary
+# Summary
 
 TODO
 
