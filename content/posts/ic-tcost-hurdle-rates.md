@@ -5,7 +5,7 @@ draft = false
 math = true
 +++
 
-# Introduction 
+## Introduction 
 
 X (formally Twitter) user *@macrocephalopod* [^1] describes a derivation of the minimum required correlation between a trading signal and the target return for profitable trading. It is defined as a function of the signal Z-Score, forecast horizon return volatility and transaction costs. 
 
@@ -13,7 +13,7 @@ This blog post consists of a summary of this technique and applies it to histori
 We visualise the minimum correlation for different combinations of transaction costs (exchange fee tiers) and 
 target forecast horizons (via historical volatility).
 
-# Correlation, Alpha and Volatility
+## Correlation, Alpha and Volatility
 
 A quick recap on correlation before we continue, the (symmetric) Pearson correlation coefficient ($ \rho$) tells us if $x$ $(y)$ increases by one standard
 deviation, what is the expected response in increase of standard deviations of $y$ $(x)$:
@@ -32,7 +32,7 @@ In practise, the $ \alpha $ value is quoted without the score coefficient as it 
 
 It's important that our $ \alpha $ value reaches a magnitude large enough that it exceeds trading costs and that it does so frequently enough for us to acheive our target return on capital. We can improve the correlation between the signal and return via feature engineering and modelling. The Volatility coefficient can be tuned based on our target forecast horizon or the asset we choose to trade.
 
-# Minimum Correlations
+## Minimum Correlations
 
 Before continuing, we re-state the $ \alpha $ formula from above in more detail for comparison, for target return $y$ and signal $x$:
 
@@ -59,7 +59,7 @@ $$ \Rightarrow \rho \le  \frac{c}{3\sigma\sqrt{\tau}} $$
 
 Assuming the signal follows a normal distribution, it will only exceed a magnatude of $ 3\sigma $ in 0.3% of periods - not enough to trade consistently. As such, as stated by the original author, values of 1.5x or 2x the minimum correlation is neccessary to realistically trade profitably - this allows us to reduce the signal threshold and exceed costs in a greater number of periods.
 
-# Evaluation on Binance Bitcoin price data
+## Evaluation on Binance Bitcoin price data
 
 We look at the following (reduced) Binance fee tiers for taker orders and combine them with a 
 constant slippage of 5 basis points (bps) for our cost variable $c$. The Total Fee is this estimate doubled, to account for both entering and exiting a position.
@@ -82,7 +82,7 @@ The minimum correlation for a signal on the VIP9 account is around 50% less than
 
 The notebook used to generate these plots is available here [^4].
 
-# Fee tier burn in
+## Fee tier burn in
 
 As an interesting exercise we investigate the "burn in" cost of a strategy which is only profitable at a higher fee tier and has to invest in an initial loss to advance to the required tier. We need to set some exta parameters: forecast horizon is 5 minutes, maximum time to complete the burn in is one week (2016 five minute periods) and the capacity of each trade is \$30,000.
 
@@ -113,7 +113,7 @@ TODO: How to account for profitable signals instead of hardcoding 1sigma??
 | VIP6    | -7.62                   | 3925                   | 2617   | -2,990,850.0 |
 |         |                         | Total                  |        | -3,094,350.0 |
 
-# Summary
+## Summary
 
 TODO
 
