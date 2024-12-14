@@ -23,7 +23,8 @@ jobs:
           extended: true
 
       - name: Build
-        run: cd uluwatuxyz && hugo --minify --baseURL https://www.uluwatu.xyz/
+        run: cd uluwatuxyz && hugo --minify --baseURL https://www.uluwatu.xyz/ && echo "www.uluwatu.xyz" > uluwatuxyz/CNAME
+
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3.7.3
