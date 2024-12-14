@@ -1,10 +1,15 @@
-+++
-title = '[draft] Signal Correlation Hurdle Rates For Profitable Trading'
-date = 2024-09-30T11:56:16+01:00
-draft = false
-toc = false
-math = true
-+++
+---
+title: "[draft] Signal Correlation Hurdle Rates For Profitable Trading"
+date: 2024-09-30T11:56:16+01:00
+draft: false
+toc: false
+images:
+tags:
+  - information coefficient
+  - forecasting
+  - correlation
+  - regression
+---
 
 # Introduction 
 
